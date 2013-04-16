@@ -28,6 +28,11 @@ class BooleanExtraBehavior extends Behavior
                     'columnPhpName' => $eachColumn->getPhpName(),
                 ));
 
+                $methodName = ucfirst(str_replace($eachPrefix, '', $methodName));
+                if ($this->getTable()->hasColumn($methodName, true)) {
+                    continue;
+                }
+
                 $script .= $this->renderTemplate('objectBooleanMutator', array(
                     'methodName' => ucfirst(str_replace($eachPrefix, '', $methodName)),
                     'columnPhpName' => $eachColumn->getPhpName(),

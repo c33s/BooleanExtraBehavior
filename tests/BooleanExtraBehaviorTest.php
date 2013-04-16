@@ -33,6 +33,9 @@ class BooleanExtraBehaviorTest extends PHPUnit_Framework_TestCase
 
         <column name="is_active" type="boolean" />
 
+        <column name="has_limit" type="boolean" />
+        <column name="limit" type="float" />
+
         <behavior name="boolean_extra" />
     </table>
 </database>
@@ -81,5 +84,19 @@ XML;
 
         $user->setActive(true);
         $this->assertTrue($user->isActive());
+    }
+
+    /**
+     * @depends testMutator
+     */
+    public function testCollidingColumnNames()
+    {
+        $user = new BEUser();
+
+        $user->setHasLimit(true);
+        $this->assertTrue($user->hasLimit());
+
+        $user->setLimit(3.14);
+        $this->assertEquals(3.14, $user->getLimit());
     }
 }
