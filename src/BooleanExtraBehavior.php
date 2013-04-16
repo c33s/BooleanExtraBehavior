@@ -29,7 +29,7 @@ class BooleanExtraBehavior extends Behavior
                 ));
 
                 $methodName = ucfirst(str_replace($eachPrefix, '', $methodName));
-                if ($this->getTable()->hasColumn($methodName, true)) {
+                if ($this->getTable()->getColumnByPhpName($methodName)) {
                     continue;
                 }
 

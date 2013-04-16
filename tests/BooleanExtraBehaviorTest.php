@@ -33,8 +33,8 @@ class BooleanExtraBehaviorTest extends PHPUnit_Framework_TestCase
 
         <column name="is_active" type="boolean" />
 
-        <column name="has_limit" type="boolean" />
-        <column name="limit" type="float" />
+        <column name="has_budget_limit" type="boolean" />
+        <column name="budget_limit" type="float" />
 
         <behavior name="boolean_extra" />
     </table>
@@ -93,10 +93,10 @@ XML;
     {
         $user = new BEUser();
 
-        $user->setHasLimit(true);
-        $this->assertTrue($user->hasLimit());
+        $user->setHasBudgetLimit(true);
+        $this->assertTrue($user->hasBudgetLimit());
 
-        $user->setLimit(3.14);
-        $this->assertEquals(3.14, $user->getLimit());
+        $user->setBudgetLimit(3.14);
+        $this->assertEquals(3.14, $user->getBudgetLimit());
     }
 }
