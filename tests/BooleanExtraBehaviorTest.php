@@ -32,6 +32,7 @@ class BooleanExtraBehaviorTest extends PHPUnit_Framework_TestCase
         <column name="email" type="varchar" size="255" required="true" primaryString="true" />
 
         <column name="is_active" type="boolean" />
+        <column name="is_published" type="boolean" />
 
         <column name="has_budget_limit" type="boolean" />
         <column name="budget_limit" type="float" />
@@ -55,6 +56,9 @@ XML;
     {
         $this->assertTrue(method_exists('BEUser', 'isActive'));
         $this->assertTrue(method_exists('BEUser', 'setActive'));
+
+        $this->assertTrue(method_exists('BEUser', 'isPublished'));
+        $this->assertTrue(method_exists('BEUser', 'setPublished'));
     }
 
     /**

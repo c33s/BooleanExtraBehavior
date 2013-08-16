@@ -22,19 +22,18 @@ class BooleanExtraBehavior extends Behavior
                 }
 
                 $methodName = str_replace(ucfirst($eachPrefix), $eachPrefix, $eachColumn->getPhpName());
-
                 $script .= $this->renderTemplate('objectBooleanAccessor', array(
                     'methodName' => $methodName,
                     'columnPhpName' => $eachColumn->getPhpName(),
                 ));
 
-                $methodName = ucfirst(str_replace($eachPrefix, '', $methodName));
+                $methodName = ucfirst(substr($methodName, strlen($eachPrefix)));
                 if ($this->getTable()->getColumnByPhpName($methodName)) {
                     continue;
                 }
 
                 $script .= $this->renderTemplate('objectBooleanMutator', array(
-                    'methodName' => ucfirst(str_replace($eachPrefix, '', $methodName)),
+                    'methodName' => $methodName,
                     'columnPhpName' => $eachColumn->getPhpName(),
                     'objectClassName' => $builder->getStubObjectBuilder()->getClassname(),
                 ));
